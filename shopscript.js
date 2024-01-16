@@ -1,32 +1,16 @@
-let cart = [];
+console.log(products)
 
-function addToCart(title, price) {
-    cart.push({ productTitle: title, productPrice: price, productQuantity: 1 });
+let productsHTML = "<h2>Ninjago</h2>"
 
-    console.log(cart);
-  //Etter å ha lagt til et produkt; oppdater handlelistevisning:
-    renderCart();
-  //Så vi må vi oppdatere label med antall produkter
-    document.querySelector("#cart .label").innerHTML = cart.length;
-}
+products.map(product => productsHTML += `<article>
+<img src="website_images/PROD_${product.imagefile}" alt="${product.title}" />
+<a href="#">${product.category}</a>
+<h3>${product.title}</h3>
+<span>Kr. ${product.price}</span>
+<button>Legg i handlekurv</button>
+</article>`)
 
-function renderCart() {
-  //Tom variabel for å bygge HTML til produkter
-    let listHTML = "";
-  //Gå gjennom cart-arrayen, lag <li> for hvert produkt
-    cart.map(
-    (prod) =>
-        (listHTML += `<li>
-    <span class="title">${prod.productTitle}</span>
-    <span class="price">${prod.productPrice}</span>
-    <span class="quantity">${prod.productQuantity}</span>
-    <button class="delete">X</button>
-</li>`)
-);
-  //Bruke en selector for å finne riktig <ul>, og skrive inn listHTML:
-document.querySelector("#cartview ul").innerHTML = listHTML;
-}
+console.log(productsHTML)
 
-function toggleCart() {
-document.querySelector("#cartview").classList.toggle("hidden");
-}
+const main = document.getElementsByTagName("main")
+main[0].innerHTML = productsHTML
